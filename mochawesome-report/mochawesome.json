@@ -1,0 +1,214 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-05-30T17:20:09.451Z",
+    "end": "2023-05-30T17:20:12.848Z",
+    "duration": 3397,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "02447ee9-08d5-4bec-a9a9-e7cca7174cf3",
+      "title": "",
+      "fullFile": "C:\\Users\\barna\\Gorest-api-testing-project2\\test\\posts.js",
+      "file": "\\test\\posts.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+          "title": "/posts route",
+          "fullFile": "C:\\Users\\barna\\Gorest-api-testing-project2\\test\\posts.js",
+          "file": "\\test\\posts.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"/posts route\"",
+              "fullTitle": "/posts route \"before all\" hook in \"/posts route\"",
+              "timedOut": false,
+              "duration": 1111,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "5d9d1bb1-2d4d-4522-9560-f6f17cf28fe1",
+              "parentUUID": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GET / posts ",
+              "fullTitle": "/posts route GET / posts ",
+              "timedOut": false,
+              "duration": 281,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "58df3b6b-475c-41f3-9882-787ac24e6896",
+              "parentUUID": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "POST /posts ",
+              "fullTitle": "/posts route POST /posts ",
+              "timedOut": false,
+              "duration": 331,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "c789f9b9-d41f-49fe-921d-cca9e399dc53",
+              "parentUUID": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GET /posts/:id | New post was created",
+              "fullTitle": "/posts route GET /posts/:id | New post was created",
+              "timedOut": false,
+              "duration": 616,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "3ae869c8-5fb3-45d7-a16b-c67240a56f57",
+              "parentUUID": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PUT /posts/:id ",
+              "fullTitle": "/posts route PUT /posts/:id ",
+              "timedOut": false,
+              "duration": 404,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "03b8e4fe-becc-4714-9e38-01f1a355d09b",
+              "parentUUID": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PATCH/posts/:id | update a post",
+              "fullTitle": "/posts route PATCH/posts/:id | update a post",
+              "timedOut": false,
+              "duration": 263,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "6240e171-65b8-4f4a-85ca-155e5c38238a",
+              "parentUUID": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "DELETE/posts/:id | New post was created",
+              "fullTitle": "/posts route DELETE/posts/:id | New post was created",
+              "timedOut": false,
+              "duration": 373,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "1880f603-ff8a-4d67-8886-a94f721d2760",
+              "parentUUID": "00ee0c4f-fb2b-40f6-8870-2cf8109e5e9d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "58df3b6b-475c-41f3-9882-787ac24e6896",
+            "c789f9b9-d41f-49fe-921d-cca9e399dc53",
+            "3ae869c8-5fb3-45d7-a16b-c67240a56f57",
+            "03b8e4fe-becc-4714-9e38-01f1a355d09b",
+            "6240e171-65b8-4f4a-85ca-155e5c38238a",
+            "1880f603-ff8a-4d67-8886-a94f721d2760"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2268,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 node_modules/
+mochawesome-report/
 package-lock.json
 mochawesome-report/
 .env  

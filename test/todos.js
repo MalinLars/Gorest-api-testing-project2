@@ -58,7 +58,7 @@ describe('/todos route', () => {
         expect(res.body).to.have.property('id');
         expect(res.status).to.eql(201);
         todoId = res.body.id;
-        console.log(res.body);
+        //console.log(res.body);
     }); 
 
     it('GET /todos/:id | User just created', async () => {
@@ -66,7 +66,7 @@ describe('/todos route', () => {
         expect(res.body.id).to.eq(todoId);
     });
 
-    it('PUT /todos/:id', async () => {
+    it('PUT /todos/:id | Update todo status', async () => {
         const data = {
             status: 'completed'
         };
@@ -77,14 +77,33 @@ describe('/todos route', () => {
             expect(res.body.status).to.equal(data.status);
             expect(res.body).to.include(data);
             expect(res.status).to.eq(200);
+            expect(res.body).to.have.property('status', 'completed');
             //console.log(res.body);
             //console.log(res.status);
     });
 
+    it('PATCH /todos/:id | Update todo title', async () => {
+        const data = {
+            title: 'This title has been updated'
+        };
+
+        const res = await request.patch(`todos/${todoId}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(data);
+
+        expect(res.body.title).to.equal(data.title);
+        expect(res.status).to.eq(200);
+        expect(res.body).to.have.property('title', 'This title has been updated');
+        expect(res.body).to.be.an('object');
+        //console.log(res.body);
+        //console.log(res.status);
+    }); 
+
     it('DELETE /todos/:id', async () => {
         const res = await request.delete(`todos/${todoId}`)
         .set('Authorization', `Bearer ${token}`);
-        expect(res.body.message).to.equal('Resource not found');
+        expect(res.body).to.be.empty;
+        //expect(res.body.message).to.equal('Resource not found');
         expect(res.status).to.eql(204);
         //console.log(res.status);
     });

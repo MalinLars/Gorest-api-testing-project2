@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-05-30T09:50:14.080Z",
+    "end": "2023-05-30T09:50:15.045Z",
+    "duration": 965,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "711ff919-1e5f-4b09-ae4b-ddfde87a9a32",
+      "title": "",
+      "fullFile": "/Users/guest_admin/TestVerktygLessons/Gorest-api-testing-project2/test/todos.js",
+      "file": "/test/todos.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "48a95f61-2829-445d-a8bd-57cf85bcc467",
+          "title": "/todos route",
+          "fullFile": "/Users/guest_admin/TestVerktygLessons/Gorest-api-testing-project2/test/todos.js",
+          "file": "/test/todos.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GET todos",
+              "fullTitle": "/todos route GET todos",
+              "timedOut": false,
+              "duration": 957,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n  args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "815a61c3-fd31-4432-a5a8-3019d6d553ad",
+              "parentUUID": "48a95f61-2829-445d-a8bd-57cf85bcc467",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "815a61c3-fd31-4432-a5a8-3019d6d553ad"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 957,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

@@ -35,6 +35,17 @@ describe('/todos route', () => {
         
     });
 
+    it('GET /todos | Query parameters - get completed todos', async () => {
+        const url = `todos?access-token${token}&due_on=2023-06-04T00:00:00.000+05:30&status=completed`;
+        const res = await request.get(url);
+
+        // Loop over each result
+        res.body.forEach((todo) => {
+            expect(todo.due_on).to.eq('2023-06-05T00:00:00.000+05:30');
+            expect(todo.status).to.eq('completed');
+        });
+    })
+
     it('POST /todos', async function() {
         this.retries(4);
         const data = createRandomTodo(userId);
@@ -57,14 +68,24 @@ describe('/todos route', () => {
 
     it('PUT /todos/:id', async () => {
         const data = {
-            status: 'complete'
+            status: 'completed'
         };
 
-        const res = await request.put(`users/${userId}`)
+        const res = await request.put(`todos/${todoId}`)
             .set('Authorization', `Bearer ${token}`)
             .send(data);
-            console.log(data);
+            expect(res.body.status).to.equal(data.status);
+            expect(res.body).to.include(data);
+            expect(res.status).to.eq(200);
+            //console.log(res.body);
+            //console.log(res.status);
     });
 
-
+    it('DELETE /todos/:id', async () => {
+        const res = await request.delete(`todos/${todoId}`)
+        .set('Authorization', `Bearer ${token}`);
+        expect(res.body.message).to.equal('Resource not found');
+        expect(res.status).to.eql(204);
+        //console.log(res.status);
+    });
 });

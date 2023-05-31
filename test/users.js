@@ -7,7 +7,7 @@ import { buildExternalHelpers } from '@babel/core';
 // Configuration
 dotenv.config();
 
-describe.only('/users route', () => {
+describe('/users route', () => {
 
     // Request
     const request = supertest ('https://gorest.co.in/public/v2/');

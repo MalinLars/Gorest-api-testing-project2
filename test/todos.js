@@ -26,7 +26,7 @@ describe('/todos route', () => {
     // GET all todos
     it('GET /todos', async() => {
         const res = await request.get('todos');
-        //console.log(res.body);
+
         expect(res.body).to.not.be.empty;
         expect(res.status).to.eql(200);
     });
@@ -61,6 +61,7 @@ describe('/todos route', () => {
     // GET single todo that was just created
     it('GET /todos/:id | User just created', async () => {
         const res = await request.get(`todos/${todoId}?access-token=${token}`);
+
         expect(res.body.id).to.eq(todoId);
     });
 
@@ -73,6 +74,7 @@ describe('/todos route', () => {
         const res = await request.put(`todos/${todoId}`)
             .set('Authorization', `Bearer ${token}`)
             .send(data);
+            
             expect(res.body.status).to.equal(data.status);
             expect(res.body).to.include(data);
             expect(res.status).to.eq(200);

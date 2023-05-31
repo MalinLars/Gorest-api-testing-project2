@@ -36,7 +36,7 @@ describe('/todos route', () => {
     });
 
     it('GET /todos | Query parameters - get completed todos', async () => {
-        const url = `todos?access-token${token}&due_on=2023-06-04T00:00:00.000+05:30&status=completed`;
+        const url = `todos?access-token=${token}&due_on=2023-06-04T00:00:00.000+05:30&status=completed`;
         const res = await request.get(url);
 
         // Loop over each result
@@ -44,7 +44,7 @@ describe('/todos route', () => {
             expect(todo.due_on).to.eq('2023-06-05T00:00:00.000+05:30');
             expect(todo.status).to.eq('completed');
         });
-    })
+    });
 
     it('POST /todos', async function() {
         this.retries(4);

@@ -1,3 +1,5 @@
+// Swapnal Tests
+
 import supertest from "supertest";
 import { expect } from "chai";
 import dotenv from 'dotenv';
@@ -17,7 +19,7 @@ describe('/users route', () => {
 
     it('GET /users', async () => {
         const res = await request.get('users');
-        //console.log(res.body);
+        
         expect(res.body).to.not.be.empty;
     });
 
@@ -25,8 +27,6 @@ describe('/users route', () => {
        
         const url ='users?gender=male&status=inactive';
         const res = await request.get(url);
-
-        //console.log(res.body);
 
         res.body.forEach((user) => {
             
@@ -45,7 +45,7 @@ describe('/users route', () => {
             .set('Authorization', `Bearer ${token}`)
             .send(data);
         
-        console.log(res.body);
+        
         expect(res.body).to.include(data);
         expect(res.body).to.have.property('id');
         expect(res.body).to.have.property('gender');
@@ -55,13 +55,48 @@ describe('/users route', () => {
         userID = res.body.id;
     });
 
-    /*it('GET /users/:id | User we just created', async () => {
+    it('GET /users/:id | User we just created', async () => {
         const res = await request.get(`users/${userID}?access-token=${token}`);
-        console.log(res.body);
-    });*/
+        
+        expect(res.body.id).to.eq(userID);
+    });
 
-    it('PUT /users/:id');
-    it('DELETE /users/:id | User we just created');
+    it('PUT /users/:id', async () => {
 
+        const data = {
+            name : 'Test Supersson'
+        };
 
-})
+        const res = await request.put(`users/${userID}`)
+                .set('Authorization', `Bearer ${token}`)
+                .send(data);
+        
+        expect(res.body.name).to.equal(data.name);
+        expect(res.body).to.include(data);
+        expect(res.status).to.eq(200);
+
+    });
+
+    it('PATCH/users/:id | update a status: of user we created', async () => {
+
+        const patchData = {
+            status : 'inactive'
+        };
+
+        const res = await request.patch(`users/${userID}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(patchData);
+
+        expect(res.body.status).to.eq(patchData.status);
+
+    });
+
+    it('DELETE /users/:id | User we just created', async () => {
+        const res = await request.delete(`users/${userID}`)
+                .set('Authorization', `Bearer ${token}`);
+
+        expect(res.body).to.empty;
+        expect(res.status).to.eq(204);
+    });
+
+});

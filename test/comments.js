@@ -13,23 +13,23 @@ describe('/comments route', () => {
 
     /* Tests */
 
-    // Get all comments
-    it('GET / comments', async () => {
+    // GET all comments
+    it('GET /comments | Retrieve all comments', async () => {
         const res = await request.get('/comments');
-        expect(res.body).to.not.be.empty;
         expect(res.status).to.equal(200);
+        expect(res.body).to.be.an('array').that.is.not.empty;
     });  
 
-    // Get 1 comment
-    it('GET / 1 comment', async () => {
+    // GET single comment with ID
+    it('GET /comments/:id | Retrieve specific comment', async () => {
         const res = await request.get('/comments/36351')
         expect(res.body.post_id).to.equal(39219);
-      
+        
     });
 
-    // Post  a new comment
-    it('POST / comments', async () => {
-        // retrieves list of posts - finds id of the first post and assigns to postId
+    // Post a new comment connected to a post_id
+    it('POST /comments | Create new comment ', async () => {
+        // Retrieves list of posts - finds id of the first post and assigns to postId
         const response = await request.get('/posts');
         postId = response.body[0].id;
             
@@ -39,27 +39,27 @@ describe('/comments route', () => {
             .send(data);
           
         expect(res.status).to.equal(201);
-        expect(res.body).to.have.property('name');
+        expect(res.body).to.have.all.keys('id', 'post_id', 'name', 'email', 'body');
 
-        // Store id in commentId for later use
+        // Store ID in commentId for future use
         commentId = res.body.id;
               
         });
 
-    it('GET /comments/:id | comment just created', async () => {
+    it('GET /comments/:id | Retrieve created comment', async () => {
         const res = await request.get(`/comments/${commentId}?access-token=${token}`);
         expect(res.body.id).to.eq(commentId);
         });
 
-        // Change created comment
-    it('PUT /change input for created comment', async () => {
+        // Update name, email and body in posted comment
+    it('PUT /comments/:id | Update comment', async () => {
         const data = {
             name: 'Name changed',
             email: 'emailchanged@jenseneducation.se',
             body: 'Body changed'
         };
 
-         const res = await request.put(`/comments/${commentId}`)
+        const res = await request.put(`/comments/${commentId}`)
             .set('Authorization', `Bearer ${token}`)
             .send(data);
 
@@ -67,11 +67,10 @@ describe('/comments route', () => {
          expect(res.body.email).to.eq('emailchanged@jenseneducation.se');
          expect(res.body.body).to.eq('Body changed');
          expect(res.status).to.equal(200);
-       
-
          });
-         // Change parts of created comment
-         it('PATCH / change 1 input for created comment', async () => {
+
+         // Update body in posted comment
+         it('PATCH /comments/:id | Partially update comment', async () => {
             const data = {
                 body: 'Body changed -again'
             };
@@ -83,8 +82,8 @@ describe('/comments route', () => {
             expect(res.body.body).to.eq('Body changed -again');
          });
 
-         // Delete created comment
-         it('DELETE /comments/:id', async () => {
+         // Delete posted comment
+         it('DELETE /comments/:id | Delete comment', async () => {
             const res = await request.delete(`/comments/ ${commentId}`)
              .set('Authorization', `Bearer ${token}`);
            

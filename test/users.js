@@ -7,7 +7,7 @@ import { buildExternalHelpers } from '@babel/core';
 // Configuration
 dotenv.config();
 
-describe.only('/users route', () => {
+describe('/users route', () => {
 
     // Request
     const request = supertest ('https://gorest.co.in/public/v2/');
@@ -55,10 +55,11 @@ describe.only('/users route', () => {
         userID = res.body.id;
     });
 
-   /*it('GET /users/:id | User we just created', async () => {
+    /*it('GET /users/:id | User we just created', async () => {
         const res = await request.get(`users/${userID}?access-token=${token}`);
         console.log(res.body);
     });*/
+
     it('PUT /users/:id');
     it('DELETE /users/:id | User we just created');
 

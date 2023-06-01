@@ -1,3 +1,4 @@
+///Barnali Tests
 import supertest from "supertest";
 import { expect } from "chai";
 import dotenv from 'dotenv'
@@ -67,7 +68,7 @@ describe('/posts route' , () => {
     });
     
     it('PATCH/posts/:id | update a post' , async () => {
-        const postId = '40023';
+        //const postId = '40023';
 
         const updatedPost = {
             title: 'This is a Updated Title',

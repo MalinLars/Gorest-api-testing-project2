@@ -17,26 +17,23 @@ describe('/todos route', () => {
     let userId = null;
     let todoId = null; 
 
-
    before(async () => {
         const res = await request.post('users').set("Authorization", `Bearer ${token}`).send(createRandomUser());
         userId = res.body.id;
     });
 
-    
-
   // Tests
+    // GET all todos
     it('GET /todos', async() => {
         const res = await request.get('todos');
-        //console.log(res.body);
+
         expect(res.body).to.not.be.empty;
         expect(res.status).to.eql(200);
-        //userId = res.body.data[0].user_id;
-        
     });
 
+    // GET todos with specified (filtered) parameters
     it('GET /todos | Query parameters - get completed todos', async () => {
-        const url = `todos?access-token${token}&due_on=2023-06-04T00:00:00.000+05:30&status=completed`;
+        const url = `todos?access-token=${token}&due_on=2023-06-04T00:00:00.000+05:30&status=completed`;
         const res = await request.get(url);
 
         // Loop over each result
@@ -44,8 +41,9 @@ describe('/todos route', () => {
             expect(todo.due_on).to.eq('2023-06-05T00:00:00.000+05:30');
             expect(todo.status).to.eq('completed');
         });
-    })
+    });
 
+    // POST - Create new todo
     it('POST /todos', async function() {
         this.retries(4);
         const data = createRandomTodo(userId);
@@ -58,14 +56,16 @@ describe('/todos route', () => {
         expect(res.body).to.have.property('id');
         expect(res.status).to.eql(201);
         todoId = res.body.id;
-        //console.log(res.body);
     }); 
 
+    // GET single todo that was just created
     it('GET /todos/:id | User just created', async () => {
         const res = await request.get(`todos/${todoId}?access-token=${token}`);
+
         expect(res.body.id).to.eq(todoId);
     });
 
+    // PUT - Edit the status of the todo using the PUT method. The entire data is resent.
     it('PUT /todos/:id | Update todo status', async () => {
         const data = {
             status: 'completed'
@@ -74,14 +74,14 @@ describe('/todos route', () => {
         const res = await request.put(`todos/${todoId}`)
             .set('Authorization', `Bearer ${token}`)
             .send(data);
+            
             expect(res.body.status).to.equal(data.status);
             expect(res.body).to.include(data);
             expect(res.status).to.eq(200);
             expect(res.body).to.have.property('status', 'completed');
-            //console.log(res.body);
-            //console.log(res.status);
     });
 
+    // PATCH - Edit the title of a todo using the PATCH method. Only the title is updated without all data resent.
     it('PATCH /todos/:id | Update todo title', async () => {
         const data = {
             title: 'This title has been updated'
@@ -95,16 +95,13 @@ describe('/todos route', () => {
         expect(res.status).to.eq(200);
         expect(res.body).to.have.property('title', 'This title has been updated');
         expect(res.body).to.be.an('object');
-        //console.log(res.body);
-        //console.log(res.status);
     }); 
 
+    // DELETE single todo
     it('DELETE /todos/:id', async () => {
         const res = await request.delete(`todos/${todoId}`)
         .set('Authorization', `Bearer ${token}`);
         expect(res.body).to.be.empty;
-        //expect(res.body.message).to.equal('Resource not found');
         expect(res.status).to.eql(204);
-        //console.log(res.status);
     });
 });

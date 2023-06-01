@@ -26,6 +26,7 @@ describe('/comments route', () => {
         expect(res.body.post_id).to.equal(39219);
       
     });
+
     // Post  a new comment
     it('POST / comments', async () => {
         // retrieves list of posts - finds id of the first post and assigns to postId
@@ -34,15 +35,14 @@ describe('/comments route', () => {
             
         const data = createRandomComment(postId);
         const res = await request.post('/comments')
-        .set('Authorization', `Bearer ${token}`)
-        .send(data);
+            .set('Authorization', `Bearer ${token}`)
+            .send(data);
           
         expect(res.status).to.equal(201);
         expect(res.body).to.have.property('name');
 
         // Store id in commentId for later use
         commentId = res.body.id;
-        console.log(res.body);
               
         });
 
@@ -51,20 +51,45 @@ describe('/comments route', () => {
         expect(res.body.id).to.eq(commentId);
         });
 
+        // Change created comment
     it('PUT /change input for created comment', async () => {
         const data = {
-            post_id: 40089,
-            name: 'Hoola Bandoola',
-            email: 'hoolabandoola@jenseneducation.se',
-            body: 'Vem kan man lita på?'
+            name: 'Name changed',
+            email: 'emailchanged@jenseneducation.se',
+            body: 'Body changed'
         };
 
          const res = await request.put(`/comments/${commentId}`)
-         .set('Authorization', `Bearer/${token}`)
-         .send(data);
-         console.log(res.body);
+            .set('Authorization', `Bearer ${token}`)
+            .send(data);
+
+         expect(res.body.name).to.eq('Name changed');
+         expect(res.body.email).to.eq('emailchanged@jenseneducation.se');
+         expect(res.body.body).to.eq('Body changed');
+         expect(res.status).to.equal(200);
+       
 
          });
+         // Change parts of created comment
+         it('PATCH / change 1 input for created comment', async () => {
+            const data = {
+                body: 'Body changed -again'
+            };
+            const res = await request.put(`/comments/${commentId}`)
+                .set('Authorization', `Bearer ${token}`)
+                .send(data);
 
+            expect(res.status).to.equal(200);
+            expect(res.body.body).to.eq('Body changed -again');
+         });
+
+         // Delete created comment
+         it('DELETE /comments/:id', async () => {
+            const res = await request.delete(`/comments/ ${commentId}`)
+             .set('Authorization', `Bearer ${token}`);
+           
+            expect(res.body).to.be.empty;
+            expect(res.status).to.eq(204);
+        });
  });
 

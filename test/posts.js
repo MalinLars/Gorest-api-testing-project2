@@ -68,7 +68,7 @@ describe('/posts route' , () => {
     });
     
     it('PATCH/posts/:id | update a post' , async () => {
-        //const postId = '40023';
+        
 
         const updatedPost = {
             title: 'This is a Updated Title',
@@ -92,5 +92,16 @@ describe('/posts route' , () => {
         expect(res.status).to.eq(204);
     });
 
+    // Clean up after executing tests
+    after(async () => {
+        const res = await request
+          .delete(`users/${userId}`)
+          .set("Authorization", `Bearer ${token}`);
+
+         // Confirm that the test data is empty and cleaned 
+        expect(res.body).to.be.empty;
+      });
+
+    
     
 });

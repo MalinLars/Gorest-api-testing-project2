@@ -44,7 +44,7 @@ describe('/users route', () => {
     // Post new user
     it('POST /users', async () => {
         const data = createRandomUser();
-
+        
         const res = await request
             .post('users')
             .set('Authorization', `Bearer ${token}`)

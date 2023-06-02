@@ -5,8 +5,8 @@ import { createRandomComment } from '../helpers/comment_helper';
 
 dotenv.config();
 
-describe('/comments route', () => {
-    const request = supertest('https://gorest.co.in/public/v2');
+describe.only('/comments route', () => {
+    const request = supertest('https://gorest.co.in/public/v2/');
     const token = process.env.USER_TOKEN;
     let postId = null;
     let commentId = null;
@@ -15,14 +15,14 @@ describe('/comments route', () => {
 
     // GET all comments
     it('GET /comments | Retrieve all comments', async () => {
-        const res = await request.get('/comments');
+        const res = await request.get('comments');
         expect(res.status).to.equal(200);
         expect(res.body).to.be.an('array').that.is.not.empty;
     });  
 
     // GET single comment with ID
     it('GET /comments/:id | Retrieve specific comment', async () => {
-        const res = await request.get('/comments/36351')
+        const res = await request.get('comments/36351')
         expect(res.body.post_id).to.equal(39219);
         
     });
@@ -30,11 +30,11 @@ describe('/comments route', () => {
     // Post a new comment connected to a post_id
     it('POST /comments | Create new comment ', async () => {
         // Retrieves list of posts - finds id of the first post and assigns to postId
-        const response = await request.get('/posts');
+        const response = await request.get('posts');
         postId = response.body[0].id;
             
         const data = createRandomComment(postId);
-        const res = await request.post('/comments')
+        const res = await request.post('comments')
             .set('Authorization', `Bearer ${token}`)
             .send(data);
           
@@ -47,7 +47,7 @@ describe('/comments route', () => {
         });
 
     it('GET /comments/:id | Retrieve created comment', async () => {
-        const res = await request.get(`/comments/${commentId}?access-token=${token}`);
+        const res = await request.get(`comments/${commentId}?access-token=${token}`);
         expect(res.body.id).to.eq(commentId);
         });
 
@@ -59,7 +59,7 @@ describe('/comments route', () => {
             body: 'Body changed'
         };
 
-        const res = await request.put(`/comments/${commentId}`)
+        const res = await request.put(`comments/${commentId}`)
             .set('Authorization', `Bearer ${token}`)
             .send(data);
 
@@ -74,7 +74,7 @@ describe('/comments route', () => {
             const data = {
                 body: 'Body changed -again'
             };
-            const res = await request.put(`/comments/${commentId}`)
+            const res = await request.put(`comments/${commentId}`)
                 .set('Authorization', `Bearer ${token}`)
                 .send(data);
 
@@ -84,7 +84,7 @@ describe('/comments route', () => {
 
          // Delete posted comment
          it('DELETE /comments/:id | Delete comment', async () => {
-            const res = await request.delete(`/comments/ ${commentId}`)
+            const res = await request.delete(`comments/ ${commentId}`)
              .set('Authorization', `Bearer ${token}`);
            
             expect(res.body).to.be.empty;

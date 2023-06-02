@@ -17,12 +17,16 @@ describe('/users route', () => {
     
     let userID = null;
 
+    /* Tests */
+
+    // GET all users
     it('GET /users', async () => {
         const res = await request.get('users');
         
         expect(res.body).to.not.be.empty;
     });
 
+    // Get all users with filters geneder: male & status: inactive
     it('GET /users | query parameters - get inactive users', async () => {
        
         const url ='users?gender=male&status=inactive';
@@ -37,6 +41,7 @@ describe('/users route', () => {
 
     });
 
+    // Post new user
     it('POST /users', async () => {
         const data = createRandomUser();
 
@@ -52,15 +57,18 @@ describe('/users route', () => {
 
         expect(res.status).to.eq(201);
         
+        // Save userID for future use
         userID = res.body.id;
     });
 
+    // Get user we created
     it('GET /users/:id | User we just created', async () => {
         const res = await request.get(`users/${userID}?access-token=${token}`);
         
         expect(res.body.id).to.eq(userID);
     });
 
+    // PUT update name of the user we recently created
     it('PUT /users/:id', async () => {
 
         const data = {
@@ -77,6 +85,7 @@ describe('/users route', () => {
 
     });
 
+    //PATCH update status of the user we recently created
     it('PATCH/users/:id | update a status: of user we created', async () => {
 
         const patchData = {
@@ -91,6 +100,7 @@ describe('/users route', () => {
 
     });
 
+    // DELETE user we recently created
     it('DELETE /users/:id | User we just created', async () => {
         const res = await request.delete(`users/${userID}`)
                 .set('Authorization', `Bearer ${token}`);

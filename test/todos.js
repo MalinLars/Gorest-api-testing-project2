@@ -22,7 +22,7 @@ describe('/todos route', () => {
         userId = res.body.id;
     });
 
-  // Tests
+  /* Tests */
     // GET all todos
     it('GET /todos', async() => {
         const res = await request.get('todos');
@@ -110,6 +110,8 @@ describe('/todos route', () => {
         const res = await request
           .delete(`users/${userId}`)
           .set("Authorization", `Bearer ${token}`);
-        expect(res.body.data).to.eq(null);
+
+         // Confirm that the test data is empty and cleaned 
+        expect(res.body).to.be.empty;
       });
 });

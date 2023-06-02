@@ -90,5 +90,16 @@ describe('/comments route', () => {
             expect(res.body).to.be.empty;
             expect(res.status).to.eq(204);
         });
+
+        it('Get /comments/:id | Negative', async () => {
+            const res = await request.get(`comments/${commentId}`);
+            expect(res.body.message).to.equal('Resource not found');
+        });
+    
+        it('PATCH /comments/:id | Negative', async () => {
+            const emptyComment = {};
+            const res = await request.patch(`comments/${commentId}`).set('Authorization', `Bearer ${token}`).send(emptyComment);
+            expect(res.body.message).to.equal('Resource not found');
+        });
  });
 

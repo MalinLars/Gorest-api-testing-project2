@@ -109,4 +109,15 @@ describe('/users route', () => {
         expect(res.status).to.eq(204);
     });
 
+    it('POST /users | Negative', async () => {
+        const emptyUser = {};
+        const res = await request.post('users').set('Authorization', `Bearer ${token}`).send(emptyUser);
+        expect(res.status).to.equal(422);
+    });
+
+    it('PUT /users/:id | Negative', async () => {
+        const emptyUser = {};
+        const res = await request.post(`users/${userID}`).set('Authorization', `Bearer ${token}`).send(emptyUser);
+        expect(res.status).to.equal(404);
+    });
 });

@@ -92,6 +92,16 @@ describe('/posts route' , () => {
         expect(res.status).to.eq(204);
     });
 
+    it('GET /posts/:id | Negative', async () => {
+        const res = await request.get(`/posts/${postId}`);
+        expect(res.body.message).to.equal('Resource not found');
+    });
+
+    it('DELETE /posts/:id | Negative', async () => {
+        const res = await request.delete(`/posts/${postId}`);
+        expect(res.status).to.equal(404);
+    });
+
     // Clean up after executing tests
     after(async () => {
         const res = await request

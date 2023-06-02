@@ -5,7 +5,7 @@ import { createRandomComment } from '../helpers/comment_helper';
 
 dotenv.config();
 
-describe.only('/comments route', () => {
+describe('/comments route', () => {
     const request = supertest('https://gorest.co.in/public/v2/');
     const token = process.env.USER_TOKEN;
     let postId = null;

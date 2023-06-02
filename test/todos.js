@@ -104,4 +104,12 @@ describe('/todos route', () => {
         expect(res.body).to.be.empty;
         expect(res.status).to.eql(204);
     });
+
+    // Clean up after executing tests
+    after(async () => {
+        const res = await request
+          .delete(`users/${userId}`)
+          .set("Authorization", `Bearer ${token}`);
+        expect(res.body.data).to.eq(null);
+      });
 });

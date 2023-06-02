@@ -68,7 +68,7 @@ describe('/posts route' , () => {
     });
     
     it('PATCH/posts/:id | update a post' , async () => {
-        //const postId = '40023';
+        
 
         const updatedPost = {
             title: 'This is a Updated Title',
@@ -92,5 +92,26 @@ describe('/posts route' , () => {
         expect(res.status).to.eq(204);
     });
 
+    it('GET /posts/:id | Negative', async () => {
+        const res = await request.get(`/posts/${postId}`);
+        expect(res.body.message).to.equal('Resource not found');
+    });
+
+    it('DELETE /posts/:id | Negative', async () => {
+        const res = await request.delete(`/posts/${postId}`);
+        expect(res.status).to.equal(404);
+    });
+
+    // Clean up after executing tests
+    after(async () => {
+        const res = await request
+          .delete(`users/${userId}`)
+          .set("Authorization", `Bearer ${token}`);
+
+         // Confirm that the test data is empty and cleaned 
+        expect(res.body).to.be.empty;
+      });
+
+    
     
 });

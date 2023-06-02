@@ -105,6 +105,17 @@ describe('/todos route', () => {
         expect(res.status).to.eql(204);
     });
 
+    it('DELETE /todos/:id | Negative', async () => {
+        const res = await request.delete(`todos/${todoId}`);
+        expect(res.status).to.equal(404);
+    });
+
+    it('POST /todos | Negative', async () => {
+        const emptyTodo = {};
+        const res = await request.post('todos').set('Authorization', `Bearer ${token}`).send(emptyTodo);
+        expect(res.status).to.equal(422);
+    });
+
     // Clean up after executing tests
     after(async () => {
         const res = await request

@@ -2,7 +2,7 @@ import supertest from "supertest";
 import { expect } from "chai";
 import dotenv from 'dotenv';
 import { createRandomUser } from "../helpers/user_helper";
-import { createRandomTodo, createRandomPost } from "../helpers/todo_helper";
+import { createRandomTodo } from "../helpers/todo_helper";
 
 
 // Configuration

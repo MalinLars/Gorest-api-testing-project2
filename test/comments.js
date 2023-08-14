@@ -22,8 +22,8 @@ describe('/comments route', () => {
 
     // GET single comment with ID
     it('GET /comments/:id | Retrieve specific comment', async () => {
-        const res = await request.get('comments/39490')
-        expect(res.body.post_id).to.equal(43398);
+        const res = await request.get('comments/50162')
+        expect(res.body.post_id).to.equal(61043);
         
     });
 

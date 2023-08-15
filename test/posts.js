@@ -9,8 +9,9 @@ import { createRandomUser } from "../helpers/user_helper";
 dotenv.config();
 //Test case for post route
 describe('/posts route' , () => {
-    const request = supertest('https://gorest.co.in/public/v2');
-    const token = process.env.USER_TOKEN;
+    const request = supertest(process.env.SUPERTEST_BASE_URL);
+    const token = process.env.SUPERTEST_USER_TOKEN;
+    const debug = process.env.SUPERTEST_DEBUG == 1? true : false;
 
      let userId = null;
      let postId = null;

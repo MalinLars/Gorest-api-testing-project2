@@ -4,7 +4,9 @@
   "description": "Testing GO Rest API V2 with Supertest, and test-framework Mocha.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --no-timeouts"
+    "test": "mocha --no-timeouts",
+    "test-mochawesome": "mocha --no-timeouts --reporter mochawesome",
+    "test-junit": "mocha --notimeouts --reporter mocha-junit-reporter"
   },
   "keywords": [],
   "author": "",
